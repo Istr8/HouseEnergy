@@ -78,7 +78,7 @@ public class LoadData
         dir_hadoop = "D:\\spark3\\";
         csv_file = "src/powerconsumption.csv";
         // String new_csv_file = "/home/user01/project/new_household_power_consumption_test.csv";
-        //System.setProperty("hadoop.home.dir", dir_hadoop);
+        System.setProperty("HADOOP_HOME", dir_hadoop);
 
         int option = 0;
         Scanner reader = new Scanner(System.in);
@@ -163,7 +163,7 @@ public class LoadData
                 .filter(str-> !(str.length()==0))
                 .filter(str-> !str.contains("Date"))
                 .filter(str->!str.contains("?"))
-                .filter(str->!(str.split(";").length<9))
+                .filter(str->!(str.split(",").length<9))
                 .map(str -> ElectricPowerUtility.getChoiceAnalyzer(str, choice, c1, c2));
 
         HashMap<Integer, Float> hmap = new HashMap<Integer, Float>();
